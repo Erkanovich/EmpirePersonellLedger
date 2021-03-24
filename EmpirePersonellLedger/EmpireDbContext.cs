@@ -15,6 +15,7 @@ namespace EmpirePersonellLedger
             modelBuilder
                 .Entity<Trooper>()
                 .HasKey(trooper => trooper.TrooperId);
+
             modelBuilder
                 .Entity<Trooper>()
                 .Property(trooper => trooper.TrooperId)
