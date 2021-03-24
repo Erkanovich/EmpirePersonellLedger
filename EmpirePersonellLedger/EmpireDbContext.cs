@@ -14,17 +14,17 @@ namespace EmpirePersonellLedger
         {
             modelBuilder
                 .Entity<Trooper>()
-                .HasKey(t => t.TrooperId);
+                .HasKey(trooper => trooper.TrooperId);
             modelBuilder
                 .Entity<Trooper>()
-                .Property(t => t.TrooperId)
+                .Property(trooper => trooper.TrooperId)
                 .ValueGeneratedOnAdd()
                 .UseIdentityColumn()
                 .IsRequired();
 
             modelBuilder
                 .Entity<TrooperType>()
-                .HasKey(tt => tt.TypeName);
+                .HasKey(trooperType => trooperType.TypeName);
 
             base.OnModelCreating(modelBuilder);
         }
