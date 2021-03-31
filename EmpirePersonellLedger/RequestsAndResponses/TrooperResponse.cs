@@ -1,13 +1,13 @@
 ﻿using System;
 
-namespace EmpirePersonellLedger
+namespace EmpirePersonellLedger.RequestsAndResponses
 {
-    public class Trooper
+    public class TrooperResponse
     {
         public int TrooperId { get; set; }
         public string OperatingNumber { get; set; }
         public string Nickname { get; set; }
         public DateTime AcquisitionDate { get; set; }
-        public TrooperType TrooperType { get; set; }
+        public TrooperTypeResponse TrooperType { get; set; }
     }
 }

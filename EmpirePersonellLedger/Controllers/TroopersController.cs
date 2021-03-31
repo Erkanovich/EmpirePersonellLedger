@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using EmpirePersonellLedger.Models;
+using EmpirePersonellLedger.RequestsAndResponses;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -74,6 +76,29 @@ namespace EmpirePersonellLedger.Controllers
             _empireDbContext.Troopers.Add(trooper);
             _empireDbContext.SaveChanges();
             return Created("https://localhost:44326/troopers", trooper);
+        }
+
+        [HttpPatch("{trooperId:int}")]
+        public ActionResult<Trooper> UpdateTrooper(int trooperId, [FromBody] UpdateTrooperRequest request)
+        {
+            var trooperToUpdate = _empireDbContext.Troopers.Find(trooperId);
+            
+            if (request.OperatingNumber != null)
+            {
+                trooperToUpdate.OperatingNumber = request.OperatingNumber;
+            }
+            if (request.AcquisitionDate != null)
+            {
+                trooperToUpdate.AcquisitionDate = request.AcquisitionDate;
+            }
+            if (request.Nickname != null)
+            {
+                trooperToUpdate.Nickname = request.Nickname;
+            }
+            _empireDbContext.Troopers.Update(trooperToUpdate);
+            _empireDbContext.SaveChanges();
+
+            return trooperToUpdate;
         }
 
         [HttpDelete("{trooperId:int}")]
